@@ -2,6 +2,7 @@ import './App.css';
 import Button from './Button';
 import Counter from './Counter';
 import Batsman from './Batsman';
+import Users from './Users';
 
 function App() {
   const handleClick = () => alert("I'm clicked");
@@ -22,6 +23,7 @@ function App() {
       <button onClick={() => multiply(5, 7)}>Click to multiply</button>
       <Counter />
       <Batsman />
+      <Users />
     </>
   );
 }
