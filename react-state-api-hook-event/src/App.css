@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+.counter {
+  margin-top: 25px;
+  border: 2px solid yellowgreen;
+}
+.flex {
+  display: flex;
+  justify-content: space-evenly;
+}
