@@ -3,8 +3,21 @@ import Button from './Button';
 import Counter from './Counter';
 import Batsman from './Batsman';
 import Users from './Users';
+import Friends from './Friends';
+import { Suspense } from 'react';
+
+const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users').then(
+  response => response.json()
+);
+
+const fetchFriends = async () => {
+  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  const json = await response.json();
+  return json;
+};
 
 function App() {
+  const friendsPromise = fetchFriends();
   const handleClick = () => alert("I'm clicked");
 
   const handleAdd5 = num => {
@@ -23,7 +36,12 @@ function App() {
       <button onClick={() => multiply(5, 7)}>Click to multiply</button>
       <Counter />
       <Batsman />
-      <Users />
+      <Suspense fallback={<h3>Loading.....</h3>}>
+        <Users fetchUsers={fetchUsers} />
+      </Suspense>
+      <Suspense fallback={<h3>Friends are Coming....</h3>}>
+        <Friends friendsPromise={friendsPromise} />
+      </Suspense>
     </>
   );
 }
