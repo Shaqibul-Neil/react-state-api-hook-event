@@ -4,6 +4,7 @@ import Counter from './Counter';
 import Batsman from './Batsman';
 import Users from './Users';
 import Friends from './Friends';
+import Posts from './Posts';
 import { Suspense } from 'react';
 
 const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users').then(
@@ -16,8 +17,17 @@ const fetchFriends = async () => {
   return json;
 };
 
+const fetchPosts = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+  const json = await res.json();
+  return json;
+};
+
 function App() {
+  //async await krle promise banate hbe aivabe
   const friendsPromise = fetchFriends();
+  const postPromise = fetchPosts();
+
   const handleClick = () => alert("I'm clicked");
 
   const handleAdd5 = num => {
@@ -36,6 +46,9 @@ function App() {
       <button onClick={() => multiply(5, 7)}>Click to multiply</button>
       <Counter />
       <Batsman />
+      <Suspense fallback={<h3>Posts are cooking...</h3>}>
+        <Posts postPromise={postPromise} />
+      </Suspense>
       <Suspense fallback={<h3>Loading.....</h3>}>
         <Users fetchUsers={fetchUsers} />
       </Suspense>
