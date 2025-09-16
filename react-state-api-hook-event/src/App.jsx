@@ -6,6 +6,7 @@ import Users from './Users';
 import Friends from './Friends';
 import Posts from './Posts';
 import Todo from './Todo';
+import SecondCounter from './SecondCounter';
 import { Suspense } from 'react';
 
 const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users').then(
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <>
+      <SecondCounter />
       <Todo />
       <Button onClick={handleClick} />
       <Button />

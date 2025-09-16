@@ -15,16 +15,11 @@ const Todo = () => {
     <div className="counter">
       <h4>ToDo's {todos.length}</h4>
       <ul className="ul">
-        {todos.map(todo => {
-          return (
-            <li
-              key={todo.id}
-              style={{ color: todo.completed ? 'green' : 'red' }}
-            >
-              {todo.completed ? '✅' : '❌'} {todo.title}
-            </li>
-          );
-        })}
+        {todos.map(todo => (
+          <li key={todo.id} style={{ color: todo.completed ? 'green' : 'red' }}>
+            {todo.completed ? '✅' : '❌'} {todo.title}
+          </li>
+        ))}
       </ul>
     </div>
   );
