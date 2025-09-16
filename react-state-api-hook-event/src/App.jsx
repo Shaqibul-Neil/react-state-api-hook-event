@@ -7,6 +7,8 @@ import Friends from './Friends';
 import Posts from './Posts';
 import Todo from './Todo';
 import SecondCounter from './SecondCounter';
+import Toggle from './Toggle';
+import Lists from './Lists';
 import { Suspense } from 'react';
 
 const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users').then(
@@ -25,10 +27,21 @@ const fetchPosts = async () => {
   return json;
 };
 
+const fetchLists = async () => {
+  try {
+    const res = await fetch('https://jsonplaceholder.typicode.com/users');
+    const json = await res.json();
+    return json;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 function App() {
   //async await krle promise banate hbe aivabe
   const friendsPromise = fetchFriends();
   const postPromise = fetchPosts();
+  const listsPromise = fetchLists();
 
   const handleClick = () => alert("I'm clicked");
 
@@ -40,6 +53,10 @@ function App() {
 
   return (
     <>
+      <Suspense fallback="Data Loading... ... ..">
+        <Lists listsPromise={listsPromise} />
+      </Suspense>
+      <Toggle />
       <SecondCounter />
       <Todo />
       <Button onClick={handleClick} />
