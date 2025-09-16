@@ -5,8 +5,9 @@ import Batsman from './Batsman';
 import Users from './Users';
 import Friends from './Friends';
 import Posts from './Posts';
+import Todo from './Todo';
 import { Suspense } from 'react';
-//neil
+
 const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users').then(
   response => response.json()
 );
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <>
+      <Todo />
       <Button onClick={handleClick} />
       <Button />
       {/* parameter sending in function */}
